@@ -24,14 +24,7 @@ describe('romanizer', () => {
     //     var r = romanizer.ator(50);
     //     expect(r).to.be.equal('L');
     // });
-    // it('should return C given 100', function () {
-    //     var r = romanizer.ator(100);
-    //     expect(r).to.be.equal('C');
-    // });
-    // it('should return D given 500', function () {
-    //     var r = romanizer.ator(500);
-    //     expect(r).to.be.equal('D');
-    // });
+
     it('should return M given 1000', function () {
         var r = romanizer.ator(1000);
         expect(r).to.be.equal('M');
@@ -40,7 +33,27 @@ describe('romanizer', () => {
         var r = romanizer.ator(2000);
         expect(r).to.be.equal('MM');
     });
+    it('should return MD given ', function () {
+        var r = romanizer.ator(1500);
+        expect(r).to.be.equal('MD');
+    });
 
+    it('should return MCC given 1200', function () {
+        var r = romanizer.ator(1200);
+        expect(r).to.be.equal('MCC');
+    });
+    it('should return D given 500', function () {
+        var r = romanizer.ator(500);
+        expect(r).to.be.equal('D');
+    });
+    it('should return CC given 200', function () {
+        var r = romanizer.ator(200);
+        expect(r).to.be.equal('CC');
+    });
+    it('should return DC given 600', function () {
+        var r = romanizer.ator(600);
+        expect(r).to.be.equal('DC');
+    });
     // it('should return III given 3', function() {
     //     var r = romanizer.ator(3);
     //     expect(r).to.be.equal('III');
