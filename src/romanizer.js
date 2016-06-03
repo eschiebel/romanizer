@@ -34,28 +34,73 @@ var romanizer = {
         //console.log(m, c, x, i);
 
         //convert digits to roman chars
-        roman += genDigits(m, 'M');
-        if(c >= 5) {
-            roman += 'D';
-            c -= 5;
-        }
-        roman += genDigits(c, 'C');
-        if(x >= 5) {
-            roman += 'L';
-            x -= 5;
-        }
-        roman += genDigits(x, 'X');
-        if(i >= 5) {
-            roman += 'V'
-            i -= 5;
-        }
-        roman += genDigits(i, 'I');
+        roman = placesToRoman(m, c, x, i);
 
-        //console.log('roman:', roman);
         return roman;
     }
 };
+function placesToRoman(m, c, x, i) {
+    console.log(m, c, x, i);
+    var roman = '';
 
+    if(c === 9 && x === 9 && i === 9) { // 999
+        roman += 'IM';
+        c = x = i = 0;
+    }
+    else if(c === 9) {
+        roman += 'CM';
+        c = 0;
+    }
+    roman += genDigits(m, 'M');
+
+    if(x === 9 && i === 9) {    // 99
+        roman += 'IC'
+        x = i = 0;
+    }
+    if(c === 4) {    // 400+
+        roman += 'CD';
+        c = 0;
+    }
+    if(c >= 5) {
+        roman += 'D';
+        c -= 5;
+    }
+    roman += genDigits(c, 'C');
+
+    if(x === 9) {           // 90+
+        roman += 'L';
+        x -= 5;
+    }
+    if(x === 4 && i === 9) {   // 49
+        roman += 'IL';
+        x -= 4;
+        i -= 9;
+    }
+    if(x >= 5) {                // 50+
+        roman += 'L';
+        x -= 5;
+    }
+    else {
+        roman += genDigits(x, 'X');
+    }
+
+    if(i === 9) {           // 9
+        roman += 'IX'
+        i -= 9;
+    }
+    else if(i >= 5) {       // 5+
+        roman += 'V'
+        i -= 5;
+    }
+    if(i === 4) {           // 4
+        roman += 'IV';
+    }
+    else {
+        roman += genDigits(i, 'I');
+    }
+
+    return roman;
+}
 function genDigits(n, c) {
     var str = '';
     for(var i = 0; i < n; ++i)

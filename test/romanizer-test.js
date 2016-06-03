@@ -68,8 +68,43 @@ describe('romanizer', () => {
         var r = romanizer.ator(3);
         expect(r).to.be.equal('III');
     });
-    if('should return VI given 6', function() {
+    it('should return VI given 6', function() {
         var r = romanizer.ator(6);
         expect(r).to.be.equal('VI');
+    });
+    // subtractive cases
+    //  minus 1
+    it('should return IV given 4', function() {
+        var r = romanizer.ator(4);
+        expect(r).to.be.equal('IV');
+    });
+    it('should return IX given 9', function() {
+        var r = romanizer.ator(9);
+        expect(r).to.be.equal('IX');
+    });
+    it('should return IL given 49', function() {
+        var r = romanizer.ator(49);
+        expect(r).to.be.equal('IL');
+    });
+    it('should return IC given 99', function() {
+        var r = romanizer.ator(99);
+        expect(r).to.be.equal('IC');
+    });
+    it('should return IM given 999', function() {
+        var r = romanizer.ator(999);
+        expect(r).to.be.equal('IM');
+    });
+    // minus 100
+    it('should return CD given 400', function() {
+        var r = romanizer.ator(400);
+        expect(r).to.be.equal('CD');
+    });
+    it('should return CM given 900', function() {
+        var r = romanizer.ator(900);
+        expect(r).to.be.equal('CM');
+    });
+    it('should return CMM given 1900', function() {
+        var r = romanizer.ator(1900);
+        expect(r).to.be.equal('CMM');
     });
 })
