@@ -40,4 +40,8 @@ describe('romanizer', () => {
         var r = romanizer.ator(3);
         expect(r).to.be.equal('III');
     });
+    it('should return IV given 4', function() {
+        var r = romanizer.ator(4);
+        expect(r).to.be.equal('IV');
+    });
 })

@@ -6,9 +6,14 @@ var romanizer = {
     // returns: string: roman numeral
     ator: function(arabic) {
         var roman = '';
-        if(arabic < 4) {
-            for(var d = 0; d < arabic; ++d) {
-                roman += 'I';
+        if(arabic < 5) {
+            if(4 === arabic) {
+                roman += 'IV';
+            }
+            else {
+                for(var d = 0; d < arabic; ++d) {
+                    roman += 'I';
+                }
             }
         }
         else if(1 === arabic) {
