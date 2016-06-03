@@ -36,4 +36,8 @@ describe('romanizer', () => {
         var r = romanizer.ator(1000);
         expect(r).to.be.equal('M');
     });
+    it('should return III given 3', function() {
+        var r = romanizer.ator(3);
+        expect(r).to.be.equal('III');
+    });
 })
