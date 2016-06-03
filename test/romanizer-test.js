@@ -94,6 +94,24 @@ describe('romanizer', () => {
         var r = romanizer.ator(999);
         expect(r).to.be.equal('IM');
     });
+    // minus 10
+    it('should return XM given 990', function() {
+        var r = romanizer.ator(990);
+        expect(r).to.be.equal('XM');
+    });
+    it('should return XD given 490', function() {
+        var r = romanizer.ator(490);
+        expect(r).to.be.equal('XD');
+    });
+    it('should return XC given 90', function() {
+        var r = romanizer.ator(90);
+        expect(r).to.be.equal('XC');
+    });
+    it('should return XL given 40', function() {
+        var r = romanizer.ator(40);
+        expect(r).to.be.equal('XL');
+    });
+
     // minus 100
     it('should return CD given 400', function() {
         var r = romanizer.ator(400);

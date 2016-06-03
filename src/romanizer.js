@@ -43,38 +43,56 @@ function placesToRoman(m, c, x, i) {
     console.log(m, c, x, i);
     var roman = '';
 
+    // thousands
     if(c === 9 && x === 9 && i === 9) { // 999
         roman += 'IM';
         c = x = i = 0;
     }
-    else if(c === 9) {
+    else if(c === 9 && x === 9) {       // 99x
+        roman += 'XM';
+        c = x = 0;
+    }
+    else if(c === 9) {                  // 9xx
         roman += 'CM';
         c = 0;
     }
     roman += genDigits(m, 'M');
 
-    if(x === 9 && i === 9) {    // 99
-        roman += 'IC'
+    // hundreds
+    if(x === 9 && i === 9) {    // x99
+        roman += 'IC';
         x = i = 0;
     }
-    if(c === 4) {    // 400+
+    if(c === 4 && x === 9) {    // 490
+        roman += 'XD';
+        c = x = 0;
+    }
+    if(x === 9) {               // 9xx
+        roman += 'XC';
+        x = 0;
+    }
+    if(c === 4) {               // 4xx
         roman += 'CD';
         c = 0;
     }
-    if(c >= 5) {
+    if(c >= 5) {                // 5xx
         roman += 'D';
         c -= 5;
     }
     roman += genDigits(c, 'C');
 
+    // tens
     if(x === 9) {           // 90+
         roman += 'L';
         x -= 5;
     }
     if(x === 4 && i === 9) {   // 49
         roman += 'IL';
-        x -= 4;
-        i -= 9;
+        x = i = 0;
+    }
+    if(x === 4) {
+        roman += 'XL';
+        x = 0;
     }
     if(x >= 5) {                // 50+
         roman += 'L';
