@@ -34,7 +34,7 @@ describe('arabic to roman', () => {
         var r = romanizer.ator(1200);
         expect(r).to.be.equal('MCC');
     });
-    it('should return MD given ', function () {
+    it('should return MD given 1500', function () {
         var r = romanizer.ator(1500);
         expect(r).to.be.equal('MD');
     });
