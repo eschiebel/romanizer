@@ -6,7 +6,7 @@ var expect = chai.expect;
 var should = chai.should();
 
 
-describe('romanizer', () => {
+describe('arabic to roman', () => {
 
     // test thousands
     it('should return M given 1000', function () {
