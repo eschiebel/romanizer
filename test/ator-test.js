@@ -148,4 +148,25 @@ describe('arabic to roman', () => {
         expect(bad).to.throw(RangeError, /< 4000/);
     })
 
+    // test cases from the kata page
+    it('should return I given 1', function () {
+        var r = romanizer.ator(1);
+        expect(r).to.be.equal('I');
+    });
+    it('should return III given 3', function () {
+        var r = romanizer.ator(3);
+        expect(r).to.be.equal('III');
+    });
+    it('should return IX given 9', function () {
+        var r = romanizer.ator(9);
+        expect(r).to.be.equal('IX');
+    });
+    it('should return MLXVI given 1066', function () {
+        var r = romanizer.ator(1066);
+        expect(r).to.be.equal('MLXVI');
+    });
+    it('should return MCMLXXXIX given 1989', function () {
+        var r = romanizer.ator(1989);
+        expect(r).to.be.equal('MCMLXXXIX');
+    });
 })

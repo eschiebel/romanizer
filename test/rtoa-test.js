@@ -164,4 +164,25 @@ describe('roman to arabic', function() {
         expect(bad).to.throw(SyntaxError);
     });
 
+    // test cases from the kata page
+    it('should return 1 iven I', function () {
+        var r = romanizer.rtoa('I');
+        expect(r).to.be.equal(1);
+    });
+    it('should return 3 given III', function () {
+        var r = romanizer.rtoa('III');
+        expect(r).to.be.equal(3);
+    });
+    it('should return 9 given IX', function () {
+        var r = romanizer.rtoa('IX');
+        expect(r).to.be.equal(9);
+    });
+    it('should return 1966 given MLXVI', function () {
+        var r = romanizer.rtoa('MLXVI');
+        expect(r).to.be.equal(1066);
+    });
+    it('should return 1989 given MCMLXXXIX', function () {
+        var r = romanizer.rtoa('MCMLXXXIX');
+        expect(r).to.be.equal(1989);
+    });
 });
