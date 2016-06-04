@@ -6,7 +6,7 @@ var expect = chai.expect;
 var should = chai.should();
 
 
-describe('roman to arabic', () => {
+describe('roman to arabic', function() {
 
     // test thousands
     it('should return 1000 giiven M', function () {
@@ -133,4 +133,35 @@ describe('roman to arabic', () => {
         var r = romanizer.rtoa('MMMCM');
         expect(r).to.be.equal(3900);
     });
+
+    // bad roman numerals
+    it('should throw syntax error given Q', function() {
+        function bad() {romanizer.rtoa('Q');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given MMMM', function() {
+        function bad() {romanizer.rtoa('MMMM');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given LL', function() {
+        function bad() {romanizer.rtoa('LL');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given XM', function() {
+        function bad() {romanizer.rtoa('MMMM');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given IC', function() {
+        function bad() {romanizer.rtoa('IC');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given XXC', function() {
+        function bad() {romanizer.rtoa('XXC');}
+        expect(bad).to.throw(SyntaxError);
+    });
+    it('should throw syntax error given LC', function() {
+        function bad() {romanizer.rtoa('LC');}
+        expect(bad).to.throw(SyntaxError);
+    });
+
 });

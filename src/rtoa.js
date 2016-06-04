@@ -1,8 +1,14 @@
 // convert roman numerals into arabic number
 // roman: string
 // returns: number
-// throws: SyntaxError if roman numeral is malformed
+// throws:
+//      SyntaxError if roman numeral is malformed
+//      InternalError if somehting went wrong
 function rtoa(roman) {
+    var reason = isValid(roman);
+    if(reason) {
+        throw SyntaxError(reason, roman);
+    }
     var r = simplify(roman);
     var a = 0;
     for(var i = 0; i < r.length; ++i) {
@@ -13,7 +19,7 @@ function rtoa(roman) {
         else if(r[i] === 'X') a += 10;
         else if(r[i] === 'V') a += 5;
         else if(r[i] === 'I') a += 1;
-        else throw SyntaxError("Invalid roman numerals:", roman);
+        else throw InternalError("Invalid character not caught in validation:", r[i]);
     }
     return a;
 }
@@ -27,6 +33,36 @@ function simplify(roman) {
     roman = roman.replace('IX', 'IIIIIIIII');
     roman = roman.replace('IV', 'IIII');
     return roman;
+}
+
+function isValid(roman) {
+    var reason = "";
+
+    // only valid roman characters?
+    if(/[^MDCLXVI]/.test(roman))
+        reason = "invalid character";
+
+    // M C X I can be repeated at most 3 times in a row
+    if(/M{4}|C{4}|X{4}|I{4}/.test(roman))
+        reason = "MCXI repeated > 3 times";
+
+    // D L V can never be repeated
+    if(/D{2}|L{2}|V{2}/.test(roman))
+        reason = "DLV can never be repeated";
+
+    // the I X and C can only be subtracted from the next 2 heigher values
+    if(/X[DM]|I[LCDM]/.test(roman))
+        reason = "IXC can only be subtracted from next 2 hiegher values";
+
+    // only 1 subtraction per numeral
+    if(/C{2}[DM]|X{2}[LC]|I{2}[VX]/.test(roman))
+        reason = "only 1 subtraction per numeral"
+
+    // V L and D can never be subtracted
+    if(/D[^CLXVI]|L[^XVI]|V[^I]/.test(roman))
+        reason = "VLD can not be repeated";
+
+    return reason;
 }
 
 module.exports = rtoa;
