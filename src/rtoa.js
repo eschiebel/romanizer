@@ -40,27 +40,27 @@ function isValid(roman) {
 
     // only valid roman characters?
     if(/[^MDCLXVI]/.test(roman))
-        reason = "invalid character";
+        reason = "Invalid character";
 
     // M C X I can be repeated at most 3 times in a row
     if(/M{4}|C{4}|X{4}|I{4}/.test(roman))
-        reason = "MCXI repeated > 3 times";
+        reason = "M, C, X, or I repeated more than 3 times";
 
     // D L V can never be repeated
     if(/D{2}|L{2}|V{2}/.test(roman))
-        reason = "DLV can never be repeated";
+        reason = "D, L, and V can never be repeated";
 
     // the I X and C can only be subtracted from the next 2 heigher values
     if(/X[DM]|I[LCDM]/.test(roman))
-        reason = "IXC can only be subtracted from next 2 hiegher values";
+        reason = "I, X, and C can only be subtracted from next 2 heigher values";
 
     // only 1 subtraction per numeral
     if(/C{2}[DM]|X{2}[LC]|I{2}[VX]/.test(roman))
-        reason = "only 1 subtraction per numeral"
+        reason = "Only 1 subtraction per numeral"
 
     // V L and D can never be subtracted
     if(/D[^CLXVI]|L[^XVI]|V[^I]/.test(roman))
-        reason = "VLD can not be repeated";
+        reason = "V, L, and D can not be repeated";
 
     return reason;
 }
