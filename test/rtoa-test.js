@@ -163,6 +163,13 @@ describe('roman to arabic', function() {
         function bad() {romanizer.rtoa('LC');}
         expect(bad).to.throw(SyntaxError);
     });
+    // subtract then try to add back
+    it('should throw syntax error given MCMC', function() {
+        function bad() {romanizer.rtoa('MCMC');}
+        expect(bad).to.throw(SyntaxError);
+    });
+
+
 
     // test cases from the kata page
     it('should return 1 iven I', function () {

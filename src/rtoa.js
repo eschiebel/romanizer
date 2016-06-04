@@ -62,6 +62,9 @@ function isValid(roman) {
     if(/D[^CLXVI]|L[^XVI]|V[^I]/.test(roman))
         reason = "V, L, and D can not be repeated";
 
+    if(/CMC|CDC|XCX|XLX|IXI|IVI/.test(roman))
+        reason = "You cannot subtract then add the same value back";
+
     return reason;
 }
 
